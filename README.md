@@ -18,7 +18,7 @@ I didn't use any AI tools for creating the code, the logo was created using an A
 ## Workflow
 <ol>
   <li><strong>BE-Setup:</strong> I first started by creating a database model based on the assignment. After that was completed I created the backend models, controllers and associated CRUD API-endpoints. APIs were initially tested using postman.</li>
-  <li><strong>Auth:</strong> The next step was to create an authentication controller and to secure all previously created routes (see [here](#user-authentication) for more info).</li>
+  <li><strong>Auth:</strong> The next step was to create an authentication controller and to secure all previously created routes (see #user-authentication for more info).</li>
   <li><strong>FE-setup: </strong>After the creation of the backend I set up the angular frontend and created some basic layout components.</li>
   <li><strong>FE-listing: </strong>All frontend listing-functionalities.</li>
   <li><strong>FE-edit: </strong>All frontend edit-functionalities.</li>
