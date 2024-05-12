@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Note} from "../../shared/models/note";
 import {MessageService} from "primeng/api";
 import {AuthenticationService} from "../../shared/services/authentication.service";
@@ -8,8 +8,6 @@ import {NgIf} from "@angular/common";
 import {ButtonModule} from "primeng/button";
 import {NoteBuilderComponent} from "../../components/note-item/note-builder/note-builder.component";
 import {TodoBuilderComponent} from "../../components/todo-item/todo-builder/todo-builder.component";
-import {Tag} from '../../shared/models/tag';
-import {UserService} from "../../shared/services/user.service";
 import {RadioButtonModule} from "primeng/radiobutton";
 import {FormsModule} from "@angular/forms";
 import {FilterBoxComponent} from "../../components/filter-box/filter-box.component";

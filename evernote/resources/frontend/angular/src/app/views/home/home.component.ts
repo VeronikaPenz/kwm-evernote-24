@@ -23,6 +23,6 @@ export class HomeComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await this.us.updateCurrentUser(this.ms);
+    await this.us.updateCurrentUser(this.ms, true);
   }
 }

@@ -47,6 +47,7 @@ Route::namespace('List')->group(function () {
       Route::get('/lists/{id}', [\App\Http\Controllers\ListController::class, 'getById']);
       Route::get('/lists/user/{userId}', [\App\Http\Controllers\ListController::class, 'getByUserId']);
       // ?sharedWith = 1 : Get all lists shared with {userId}
+      // ?filter = <tagId> : filter by tag-id
 
       Route::put('/lists/share/{id}', [\App\Http\Controllers\ListController::class, 'share']);
       Route::put('/lists/accept/{id}', [\App\Http\Controllers\ListController::class, 'accept']);
@@ -71,6 +72,8 @@ Route::namespace('Note')->group(function () {
     Route::group(['middleware' => ['auth.owner']], function () {
       Route::get('/notes/{id}', [\App\Http\Controllers\NoteController::class, 'getById']);
       Route::get('/notes/user/{userId}', [\App\Http\Controllers\NoteController::class, 'getUnlistedByUserId']);
+      // ?filter = <tagId> : filter by tag-id
+
       Route::get('/notes/byList/{listId}', [\App\Http\Controllers\NoteController::class, 'getByListId']);
       Route::put('/notes/{id}', [\App\Http\Controllers\NoteController::class, 'update']);
       Route::delete('/notes/{id}', [\App\Http\Controllers\NoteController::class, 'delete']);
@@ -84,6 +87,8 @@ Route::namespace('Todo')->group(function () {
     Route::post('/todos', [\App\Http\Controllers\TodoController::class, 'create']);
     Route::group(['middleware' => ['auth.owner']], function () {
       Route::get('/todos/user/{userId}', [\App\Http\Controllers\TodoController::class, 'getByUserId']);
+      // ?filter = <tagId> : filter by tag-id
+
       Route::get('/todos/byNote/{noteId}', [\App\Http\Controllers\TodoController::class, 'getByNoteId']);
       Route::put('/todos/{id}', [\App\Http\Controllers\TodoController::class, 'update']);
       Route::delete('/todos/{id}', [\App\Http\Controllers\TodoController::class, 'delete']);

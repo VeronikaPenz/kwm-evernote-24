@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router, RouterOutlet} from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 import {ButtonModule} from 'primeng/button';
 import {FooterComponent} from "./components/_layout/footer/footer.component";
 import {HeaderComponent} from "./components/_layout/header/header.component";
@@ -31,12 +31,10 @@ import {MessageService} from "primeng/api";
 })
 export class AppComponent implements OnInit {
   login: boolean;
-  window: Window | undefined;
 
   constructor(private router: Router,
               private auth: AuthenticationService) {
     this.login = this.router.url === '/login';
-    //this.window = window; TODO: fix
   }
 
   ngOnInit(): void {

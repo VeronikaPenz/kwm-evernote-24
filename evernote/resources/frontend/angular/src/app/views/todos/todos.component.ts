@@ -2,17 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {Todo} from "../../shared/models/todo";
 import {TodoItemComponent} from "../../components/todo-item/todo-item.component";
 import {NgIf} from "@angular/common";
-import {NoteService} from "../../shared/services/note.service";
 import {MessageService} from "primeng/api";
 import {AuthenticationService} from "../../shared/services/authentication.service";
 import {TodoService} from "../../shared/services/todo.service";
 import {ButtonModule} from "primeng/button";
 import {DialogModule} from "primeng/dialog";
-import {DynamicFormComponent, FormTemplate} from "../../components/dynamic-form/dynamic-form.component";
-import {Validators} from "@angular/forms";
+import {DynamicFormComponent} from "../../components/dynamic-form/dynamic-form.component";
 import {TodoBuilderComponent} from "../../components/todo-item/todo-builder/todo-builder.component";
 import {FilterBoxComponent} from "../../components/filter-box/filter-box.component";
-import {filter} from "rxjs";
 
 @Component({
   selector: 'en-todos',
