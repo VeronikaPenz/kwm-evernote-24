@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="1f33e987-d320-4771-aa54-33a235833126" name="dedi50.your-server.de">
+        <fileTransfer rootFolder="/usr/home/ssqxrw/public_html/KWM-Evernote" accessType="SFTP" host="dedi50.your-server.de" port="222" sshConfigId="9d2cb752-d2e9-4ece-ab99-0f3246bc1cbc" sshConfig="ssqxrw@dedi50.your-server.de:222 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
