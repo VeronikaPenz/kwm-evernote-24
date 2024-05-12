@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AngularController;
 use Illuminate\Support\Facades\Route;
 
 /*
