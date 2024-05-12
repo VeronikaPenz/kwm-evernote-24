@@ -1,0 +1,57 @@
+<div class="todo-item" [class]="{'todo-checked':checked}" *ngIf="t && !deleted">
+  <p-checkbox [(ngModel)]="checked" [binary]="true" [inputId]="'todo-'+t.id"
+              [disabled]="!owner && !sharedWithMe"
+              (onChange)="changeStatus()"></p-checkbox>
+  <div class="todo-inner">
+    <label [for]="'todo-'+t.id"><h4>{{ t.title }}</h4></label>
+    <p *ngIf="t.description">{{ t.description }}</p>
+
+    <span *ngIf="t.due_date" class="todo-due">
+      <strong>Due: </strong>{{ t.due_date.toLocaleDateString() }}
+    </span>
+
+    <span *ngIf="t.share?.user" class="todo-assignee">
+      <strong>Assignee: </strong>
+      <en-user-item [user]="t.share?.user" [tiny]="true"></en-user-item>
+    </span>
+
+    <div *ngIf="t.user" class="todo-owner">
+      <strong>Owned by:</strong>
+      <en-user-item [user]="t.user" [tiny]="true"></en-user-item>
+    </div>
+
+    @if (t.tags && t.tags.length > 0) {
+      <div class="todo-tags tag-list">
+        @for (tag of t.tags; track tag.id) {
+          <span class="tag-item">
+          <i style="background:{{tag.color}};"></i>
+            {{ tag.label }}
+        </span>
+        }
+      </div>
+    }
+
+  </div>
+  <div class="todo-buttons" *ngIf="owner">
+    <button (click)="edit()"><i class="pi pi-pencil"></i></button>
+    <button (click)="showDelete = true"><i class="pi pi-trash"></i></button>
+  </div>
+</div>
+
+@if (t && !deleted) {
+  <p-dialog header="Delete Todo" [modal]="true" [(visible)]="showDelete" [style]="{ width: '800px' }">
+    <p>Are you sure you want to delete this Todo?</p>
+    <div class="modal-buttons">
+      <p-button (click)="showDelete=false">Cancel</p-button>
+      <p-button (click)="delete()" severity="danger">Delete</p-button>
+    </div>
+  </p-dialog>
+
+  <p-dialog header="Edit Todo" [modal]="true" [(visible)]="showEdit" [style]="{ width: '800px' }">
+    <en-dynamic-form *ngIf="showEdit" prefix="todo-edit-"
+                     [source]="t" [template]="editTemplate"
+                     (cancel)="showEdit=false"
+                     (submitForm)="update($event)">
+    </en-dynamic-form>
+  </p-dialog>
+}

@@ -1,0 +1,9 @@
+<h1><i class="pi pi-server"></i> My Lists</h1>
+
+<en-filter-box (change)="fetchLists($event.id)"></en-filter-box>
+
+<en-list-item-list [lists]="lists"></en-list-item-list>
+<p-button (click)="showNew = true">Add new list</p-button>
+
+<en-list-builder [show]="showNew" (cancel)="showNew = false" (created)="newList($event)"></en-list-builder>
+

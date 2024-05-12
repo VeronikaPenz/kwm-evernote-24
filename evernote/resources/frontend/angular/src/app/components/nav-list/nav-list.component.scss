@@ -1,0 +1,11 @@
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  > .p-button {
+    text-decoration: none;
+    &.active {
+      background: var(--secondary-color);
+    }
+  }
+}

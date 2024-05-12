@@ -1,0 +1,6 @@
+<h1><i class="pi pi-list-check"></i> Assigned Todos</h1>
+<div class="todos" *ngIf="todos">
+  @for (todo of todos; track todo.id) {
+    <en-todo-item [todo]="todo" [owner]="false"></en-todo-item>
+  }
+</div>

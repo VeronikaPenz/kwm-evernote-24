@@ -1,0 +1,8 @@
+<p-accordion *ngIf="lists"
+             class="w-full list-item-list"
+             expandIcon="pi pi-plus"
+             collapseIcon="pi pi-minus">
+  @for (list of lists; track list.id) {
+    <en-list-item [list]="list" [owner]="owner" [pending]="pending"></en-list-item>
+  }
+</p-accordion>

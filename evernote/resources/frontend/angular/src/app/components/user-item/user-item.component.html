@@ -1,0 +1,23 @@
+<div class="user-item" [class]="{'user-item-tiny':tiny}" *ngIf="user">
+  <div class="user-image">
+    @if (user.profilepic) {
+      <img src="{{user.profilepic}}">
+    } @else {
+      <i class="pi pi-user"></i>
+    }
+  </div>
+  <div class="user-data">
+    <span class="user-prop">
+      <strong *ngIf="!tiny">Name: </strong>
+      <span class="user-prop-value">{{ user.name }}</span>
+    </span>
+    <span class="user-prop" *ngIf="!tiny">
+      <strong>Email: </strong>
+      <span class="user-prop-value">{{ user.email }}</span>
+    </span>
+    <span class="user-prop" *ngIf="!tiny">
+      <strong>Role: </strong>
+      <span class="user-prop-value">{{ user.role }}</span>
+    </span>
+  </div>
+</div>

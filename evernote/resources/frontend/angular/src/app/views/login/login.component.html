@@ -1,0 +1,24 @@
+<div id="login-outer">
+  <div id="login-inner">
+    <div id="login-header">
+      <img src="assets/evernote.png">
+      <h1 class="app-title">KWM-EVERNOTE</h1>
+    </div>
+    <hr>
+    <form id="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="form-group">
+        <label for="login-email">Email</label>
+        <input pInputText id="login-email" formControlName="email"/>
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <p-password id="login-password" formControlName="password" [feedback]="false"/>
+      </div>
+      <p-button type="submit"
+                [disabled]="loginForm.invalid"
+                [severity]="!loginForm.invalid ? 'success' : ''">
+        Login
+      </p-button>
+    </form>
+  </div>
+</div>

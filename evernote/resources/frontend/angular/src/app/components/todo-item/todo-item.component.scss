@@ -1,0 +1,49 @@
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  padding: 15px 20px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  max-width: 600px;
+
+  &.todo-checked {
+    opacity: .5;
+  }
+
+  .todo-inner {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 10px;
+
+    h4, > p {
+      margin: 0;
+    }
+
+    h4 {
+      cursor: pointer;
+    }
+
+    todo-owner {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .user-item {
+        display: inline-flex;
+      }
+    }
+  }
+
+  .todo-buttons {
+    display: flex;
+
+    button {
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+  }
+}

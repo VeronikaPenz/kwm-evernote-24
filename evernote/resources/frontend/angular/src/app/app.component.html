@@ -1,0 +1,17 @@
+<div id="layout-wrapper">
+  <div id="loading" *ngIf="window?.loading">
+    <i class="pi pi-spin pi-spinner-dotted" style="font-size: 3rem"></i>
+  </div>
+  <en-header *ngIf="!login"></en-header>
+  <div class="layout-inner">
+    <p-toast position="top-right"></p-toast>
+
+    <aside *ngIf="!login" id="layout-sidebar">
+      <en-nav-list></en-nav-list>
+    </aside>
+    <main id="layout-main">
+      <router-outlet/>
+    </main>
+  </div>
+  <en-footer></en-footer>
+</div>

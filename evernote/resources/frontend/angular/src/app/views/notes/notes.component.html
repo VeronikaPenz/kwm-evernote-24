@@ -1,0 +1,13 @@
+<h1><i class="pi pi-calendar"></i> My Notes</h1>
+
+<en-filter-box (change)="fetchNotes($event.id)"></en-filter-box>
+
+<div class="notes" *ngIf="notes">
+  @for (note of notes; track note.id) {
+    <en-note-item [note]="note"></en-note-item>
+  }
+</div>
+<p-button (click)="showNew = true">Add new Note</p-button>
+
+<en-note-builder [show]="showNew" (cancel)="showNew = false" (created)="newNote($event)"></en-note-builder>
+

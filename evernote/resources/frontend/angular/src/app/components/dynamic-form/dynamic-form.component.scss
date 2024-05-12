@@ -1,0 +1,22 @@
+:host ::ng-deep .form-array {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  .form-array-item {
+    padding: 10px;
+    background: #eee;
+    width: 100%;
+  }
+
+  .add-tag-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .p-button {
+    min-width: unset !important;
+  }
+}

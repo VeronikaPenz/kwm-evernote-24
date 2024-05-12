@@ -1,0 +1,51 @@
+<div class="note-item" *ngIf="n && !deleted">
+  <span class="note-important" *ngIf="n.important">Important</span>
+  <h3 *ngIf="n.title">{{ n.title }}</h3>
+  <p>{{ n.text }}</p>
+  <img *ngIf="n.image" src="{{n.image}}"/>
+
+  @if (n.tags && n.tags.length > 0) {
+    <div class="note-tags tag-list">
+      @for (tag of n.tags; track tag.id) {
+        <span class="tag-item">
+          <i style="background:{{tag.color}};"></i>
+          {{ tag.label }}
+        </span>
+      }
+    </div>
+  }
+
+  <div class="note-todos">
+    @for (todo of n.todos; track todo.id) {
+      <en-todo-item [todo]="todo" [owner]="owner"></en-todo-item>
+    }
+    <p-button *ngIf="owner" (click)="showNewTodo = true" severity="info">add Todo</p-button>
+  </div>
+
+  <div class="note-buttons" *ngIf="owner">
+    <p-button (click)="edit()">Edit Note</p-button>
+    <p-button (click)="showDelete = true" severity="danger">Delete Note</p-button>
+  </div>
+
+  <p-dialog header="Delete Note" [modal]="true" [(visible)]="showDelete" [style]="{ width: '800px' }">
+    <p>
+      Are you sure you want to delete this Note?<br>
+      <strong>Linked Todos will not be deleted, they will be listed under "My Todos".</strong>
+    </p>
+    <div class="modal-buttons">
+      <p-button (click)="showDelete=false">Cancel</p-button>
+      <p-button (click)="delete()" severity="danger">Delete</p-button>
+    </div>
+  </p-dialog>
+
+  <p-dialog header="Edit Note" [modal]="true" [(visible)]="showEdit" [style]="{ width: '800px' }">
+    <en-dynamic-form *ngIf="showEdit" prefix="todo-edit-"
+                     [source]="n" [template]="editTemplate"
+                     (cancel)="showEdit=false"
+                     (submitForm)="update($event)">
+    </en-dynamic-form>
+  </p-dialog>
+
+  <en-todo-builder [show]="showNewTodo" (cancel)="showNewTodo = false" (created)="newTodo($event)"></en-todo-builder>
+
+</div>

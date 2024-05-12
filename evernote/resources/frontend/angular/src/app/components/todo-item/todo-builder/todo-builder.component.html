@@ -1,0 +1,7 @@
+<p-dialog header="New Todo" [modal]="true" [(visible)]="show" [style]="{ width: '800px' }">
+  <en-dynamic-form *ngIf="show" prefix="todo-edit-"
+                   [source]="t" [template]="newTemplate"
+                   (cancel)="cancel.emit()"
+                   (submitForm)="create($event)">
+  </en-dynamic-form>
+</p-dialog>

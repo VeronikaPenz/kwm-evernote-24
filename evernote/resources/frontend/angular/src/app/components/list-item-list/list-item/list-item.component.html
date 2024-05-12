@@ -1,0 +1,63 @@
+<p-accordionTab class="list-item" *ngIf="l && !deleted" [disabled]="pending">
+  <ng-template pTemplate="header">
+    <div class="list-info">
+      <h2>{{ l.title }}</h2>
+      <p *ngIf="l.description">{{ l.description }}</p>
+      <div *ngIf="l.user" class="list-owner">
+        <strong>Owned by:</strong>
+        <en-user-item [user]="l.user" [tiny]="true"></en-user-item>
+      </div>
+    </div>
+  </ng-template>
+  @if (!pending) {
+    <div class="list-item-header">
+      <p-button *ngIf="owner" (click)="edit()">Edit List</p-button>
+      <p-button *ngIf="owner" (click)="showShare = true" severity="info">Share List</p-button>
+      <p-button *ngIf="owner" (click)="showDelete = true" severity="danger">Delete List</p-button>
+      <div *ngIf="(l.shares?.length ?? 0) > 0">
+        <strong>This list is shared with:</strong>
+        <div class="list-item-shares">
+          @for (share of l.shares; track share.id) {
+            <en-user-item [user]="share.user" [tiny]="true"></en-user-item>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="l.notes" class="list-item-notes">
+      @for (note of l.notes; track note.id) {
+        <en-note-item [note]="note" [owner]="owner"></en-note-item>
+      }
+      <p-button *ngIf="owner" (click)="showNewNote = true" severity="info">add Note</p-button>
+    </div>
+
+    <p-dialog header="Delete Note" [modal]="true" [(visible)]="showDelete" [style]="{ width: '800px' }">
+      <p>
+        Are you sure you want to delete this List?<br>
+        <strong>Linked Notes will not be deleted, they will be listed under "My Notes".<br>
+          Assigned Todos will be unassigned.</strong>
+      </p>
+      <div class="modal-buttons">
+        <p-button (click)="showDelete=false">Cancel</p-button>
+        <p-button (click)="delete()" severity="danger">Delete</p-button>
+      </div>
+    </p-dialog>
+
+    <p-dialog header="Edit List" [modal]="true" [(visible)]="showEdit" [style]="{ width: '800px' }">
+      <en-dynamic-form *ngIf="showEdit" prefix="todo-edit-"
+                       [source]="l" [template]="editTemplate"
+                       (cancel)="showEdit=false"
+                       (submitForm)="update($event)">
+      </en-dynamic-form>
+    </p-dialog>
+
+    <p-dialog header="Share List" [modal]="true" [(visible)]="showShare" [style]="{ width: '800px' }">
+      <en-share-box *ngIf="showShare" [exclude]="exculdes()" (cancel)="showShare=false" (share)="share($event)"></en-share-box>
+    </p-dialog>
+
+    <en-note-builder [show]="showNewNote" (cancel)="showNewNote = false" (created)="newNote($event)"></en-note-builder>
+  }
+</p-accordionTab>
+<p-button *ngIf="pending" class="accept-share" severity="success" (click)="acceptShare()">
+  Accept share
+</p-button>

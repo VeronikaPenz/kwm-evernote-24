@@ -1,0 +1,60 @@
+<form *ngIf="fg && template && data" [id]="prefix+data.id" [formGroup]="fg" (ngSubmit)="submitForm.emit(fg.value)">
+
+  @for (item of template | keyvalue: retainOrder; track item.key) {
+    @if (item.value.type === 'tags') {
+      <h3>Tags:</h3>
+      <div class="form-array" formArrayName="tags">
+        @for (control of item.value.dynamicItems?.controls; let i = $index; track control) {
+          <div class="form-array-item" [formGroupName]="i">
+            <input type="hidden" formControlName="id">
+            <div class="form-group">
+              <label [for]="prefix+'-tag-label-'+data.id+'-'+i">Tag label</label>
+              <input [id]="prefix+'-tag-label-'+data.id+'-'+i" formControlName="label" pInputText/>
+            </div>
+            <div class="form-group">
+              <label [for]="prefix+'-tag-color-'+data.id+'-'+i">Tag color</label>
+              <p-colorPicker [inputId]="prefix+'-tag-color-'+data.id+'-'+i" formControlName="color" inline/>
+            </div>
+
+            <p-button (click)="removeDynamicItem(item.key, i)" severity="danger">Remove item</p-button>
+          </div>
+        }
+        <div *ngIf="showTagSelect">
+          <en-filter-box (change)="addDynamicItem(item.key, $event)" [reduced]="true"></en-filter-box>
+        </div>
+        <div *ngIf="!showTagSelect" class="add-tag-buttons">
+          <p-button type="button" (click)="addDynamicItem(item.key)">Add new Tag</p-button>
+          <p-button type="button" (click)="showTagSelect = true" severity="info">Add existing Tag</p-button>
+        </div>
+      </div>
+    } @else {
+      <div class="form-group">
+        <label [for]="prefix+'-'+item.key+'-'+data.id">{{ item.value.label }}</label>
+
+        @if (item.value.type === 'string') {
+          <input [id]="prefix+'-'+item.key+'-'+data.id" [formControlName]="item.key" pInputText/>
+        } @else if (item.value.type === 'text') {
+          <textarea [id]="prefix+'-'+item.key+'-'+data.id" [formControlName]="item.key" pInputTextarea></textarea>
+        } @else if (item.value.type === 'boolean') {
+          <p-inputSwitch [inputId]="prefix+'-'+item.key+'-'+data.id" [formControlName]="item.key"/>
+        } @else if (item.value.type === 'date') {
+          <p-calendar [inputId]="prefix+'-'+item.key+'-'+data.id" [formControlName]="item.key" inline/>
+        } @else if (item.value.type === 'color') {
+          <p-colorPicker [inputId]="prefix+'-'+item.key+'-'+data.id" [formControlName]="item.key" inline/>
+        }
+
+        @if (item.value.errors && fg.get(item.key)?.invalid && (fg.get(item.key)?.dirty || fg.get(item.key)?.touched)) {
+          @for (error of Object.keys(fg.get(item.key)?.errors ?? {}); track error) {
+            <en-form-error *ngIf="item.value.errors[error]" [error]="item.value.errors[error]"></en-form-error>
+          }
+        }
+      </div>
+    }
+  }
+  <div class="modal-buttons">
+    <p-button (click)="cancel.emit()">Cancel</p-button>
+    <p-button type="submit" severity="success" [disabled]="fg.invalid" [severity]="!fg.invalid ? 'success' : ''">
+      Submit
+    </p-button>
+  </div>
+</form>

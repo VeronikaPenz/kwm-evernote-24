@@ -1,0 +1,7 @@
+<h1><i class="pi pi-share-alt"></i> Shared Lists</h1>
+@if (pending && pending.length > 0) {
+  <en-list-item-list [lists]="pending" [owner]="false" [pending]="true"></en-list-item-list>
+}
+@if (accepted && accepted.length > 0) {
+  <en-list-item-list [lists]="accepted" [owner]="false"></en-list-item-list>
+}

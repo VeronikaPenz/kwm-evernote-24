@@ -1,0 +1,22 @@
+<div class="tag-filter-box tag-list" [class]="{'reduced':reduced}">
+
+  <div class="filter-option" *ngIf="!reduced">
+    <p-radioButton [value]="{ id:-1}" [(ngModel)]="filter"
+                   [inputId]="reduced ? 'add-tag-none' : 'filter-none'"
+                   (onClick)="change.emit(filter)"></p-radioButton>
+    <label [for]="reduced ? 'add-tag-none' : 'filter-none'">No filter</label>
+  </div>
+  @if (ts.tags) {
+    @for (t of tags; track t.id) {
+      <div class="filter-option">
+        <p-radioButton [value]="t" [(ngModel)]="filter"
+                       [inputId]="(reduced ? 'add-tag-' : 'filter-')+t.id"
+                       (onClick)="change.emit(filter)"></p-radioButton>
+        <label [for]="(reduced ? 'add-tag-' : 'filter-')+t.id" class="tag-item">
+          <i style="background:{{t.color}};"></i>
+          {{ t.label }}
+        </label>
+      </div>
+    }
+  }
+</div>

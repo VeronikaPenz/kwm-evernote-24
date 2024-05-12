@@ -1,0 +1,21 @@
+<div class="user-box tag-list">
+  <div class="user-option">
+    <p-radioButton [value]="-1" [(ngModel)]="user" inputId="user-none"></p-radioButton>
+    <label for="user-none">none selected</label>
+  </div>
+
+  @if (users) {
+    @for (u of users; track u.id) {
+      <div class="user-option" *ngIf="u.id+'' !== currentUser && !exclude.includes(u.id)">
+        <p-radioButton [value]="u.id" [(ngModel)]="user" [inputId]="'user-'+u.id"></p-radioButton>
+        <label [for]="'user-'+u.id">
+          <en-user-item [user]="u" [tiny]="true"></en-user-item>
+        </label>
+      </div>
+    }
+  }
+</div>
+<div class="modal-buttons">
+  <p-button (click)="cancel.emit()">Cancel</p-button>
+  <p-button [disabled]="user==-1" (click)="share.emit(user)" severity="success">Submit</p-button>
+</div>

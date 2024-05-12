@@ -1,0 +1,12 @@
+<h1><i class="pi pi-check-square"></i> My Todos</h1>
+
+<en-filter-box (change)="fetchTodos($event.id)"></en-filter-box>
+
+<div class="todos" *ngIf="todos">
+  @for (todo of todos; track todo.id) {
+    <en-todo-item [todo]="todo"></en-todo-item>
+  }
+</div>
+<p-button (click)="showNew = true">Add new Todo</p-button>
+
+<en-todo-builder [show]="showNew" (cancel)="showNew = false" (created)="newTodo($event)"></en-todo-builder>

@@ -1,0 +1,10 @@
+.user-box {
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+  .user-option {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+}

@@ -1,0 +1,11 @@
+.tag-filter-box {
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+
+  .filter-option {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+}
