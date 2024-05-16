@@ -1,4 +1,4 @@
-<p-accordionTab class="list-item" *ngIf="l && !deleted" [disabled]="pending">
+<p-accordionTab class="list-item"  *ngIf="l && !deleted" [disabled]="pending">
   <ng-template pTemplate="header">
     <div class="list-info">
       <h2>{{ l.title }}</h2>
@@ -18,7 +18,8 @@
         <strong>This list is shared with:</strong>
         <div class="list-item-shares">
           @for (share of l.shares; track share.id) {
-            <en-user-item [user]="share.user" [tiny]="true"></en-user-item>
+            <en-user-item [user]="share.user" [tiny]="true" [shared]="true"
+                          (removeShare)="removeShare(share.id)"></en-user-item>
           }
         </div>
       </div>
@@ -52,7 +53,8 @@
     </p-dialog>
 
     <p-dialog header="Share List" [modal]="true" [(visible)]="showShare" [style]="{ width: '800px' }">
-      <en-share-box *ngIf="showShare" [exclude]="exculdes()" (cancel)="showShare=false" (share)="share($event)"></en-share-box>
+      <en-share-box *ngIf="showShare" [exclude]="exculdes()" (cancel)="showShare=false"
+                    (share)="share($event)"></en-share-box>
     </p-dialog>
 
     <en-note-builder [show]="showNewNote" (cancel)="showNewNote = false" (created)="newNote($event)"></en-note-builder>

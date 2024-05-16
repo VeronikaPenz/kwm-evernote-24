@@ -68,4 +68,10 @@ export class ListService {
     });
   }
 
+  async removeShare(id: number | string): Promise<boolean> {
+    return await this.api.issueRequest(`/share/${id}`, {
+      method: "DELETE"
+    });
+  }
+
 }

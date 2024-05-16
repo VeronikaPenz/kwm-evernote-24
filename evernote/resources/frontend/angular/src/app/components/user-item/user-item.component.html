@@ -19,5 +19,20 @@
       <strong>Role: </strong>
       <span class="user-prop-value">{{ user.role }}</span>
     </span>
+    <p-button class="user-unshare" *ngIf="shared" (click)="showUnshare = true">
+      <i class="pi pi-times"></i>
+    </p-button>
   </div>
 </div>
+
+<p-dialog *ngIf="shared" header="Unshare" [modal]="true"
+          [(visible)]="showUnshare" [style]="{ width: '800px' }">
+  <p>
+    Do you want to remove this user from the list?<br>
+    <strong>They will no longer be able to see it and their todos will be unassigned.</strong>
+  </p>
+  <div class="modal-buttons">
+    <p-button (click)="showUnshare=false">Cancel</p-button>
+    <p-button (click)="unshare()" severity="danger">Unshare</p-button>
+  </div>
+</p-dialog>

@@ -112,4 +112,15 @@ export class ListItemComponent implements OnInit {
       this.pending = false;
     }
   }
+
+  async removeShare(id: number) {
+    await this.ls.removeShare(id).then(async () => {
+      if (this.l?.shares) {
+        const index = this.l.shares.findIndex((i) => i.id === id);
+        this.deleted = true;
+        this.l = List.fromSource(await this.ls.getById(this.l.id));
+        this.deleted = false;
+      }
+    });
+  }
 }

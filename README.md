@@ -53,7 +53,7 @@ the following features have been fully implemented (frontend & backend):
   <li>Todos: list / create / edit / delete / check / filter by tag</li>
   <li>Notes: list / create / edit / delete / check / filter by tag</li>
   <li>Lists: list / create / edit / delete / check / filter by tag</li>
-  <li>Share Lists with other users</li>
+  <li>Share and unshare Lists with other users</li>
   <li>Accept other users' shared lists and view them</li>
   <li>view todos assigned to self & check them</li>
   <li>Tags: tags don't have their own route or listing, instead they are added to todos and notes when creating or editing those items (either existing or new). Tags are automatically deleted when no todo or note uses them.</li>
