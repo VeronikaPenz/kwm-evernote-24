@@ -18,7 +18,7 @@ I didn't use any AI tools for creating the code, the logo was created using an A
 ## Workflow
 <ol>
   <li><strong>BE-Setup:</strong> I first started by creating a database model based on the assignment. After that was completed I created the backend models, controllers and associated CRUD API-endpoints. APIs were initially tested using postman.</li>
-  <li><strong>Auth:</strong> The next step was to create an authentication controller and to secure all previously created routes (see #user-authentication for more info).</li>
+  <li><strong>Auth:</strong> The next step was to create an authentication controller and to secure all previously created routes.</li>
   <li><strong>FE-setup: </strong>After the creation of the backend I set up the angular frontend and created some basic layout components.</li>
   <li><strong>FE-listing: </strong>All frontend listing-functionalities.</li>
   <li><strong>FE-edit: </strong>All frontend edit-functionalities.</li>
@@ -27,11 +27,11 @@ I didn't use any AI tools for creating the code, the logo was created using an A
 </ol>
 
 ## File structure
-The angular frontend's source-files are contained within the resources directory of the laravel installation. All laravel web routes defer to a angular.blade view which serves as the mount-point for the angular application (the FE-build is contained in public/assets/angular). <a href="https://medium.com/swlh/how-to-setup-laravel-with-angular-d3de171afa03">This article</a> served as the guide for this setup.
+The angular frontend's source-files are contained within the resources directory of the laravel installation. All laravel web routes defer to an angular.blade view which serves as the mount-point for the angular application (the FE-build is contained in public/assets/angular). <a href="https://medium.com/swlh/how-to-setup-laravel-with-angular-d3de171afa03">This article</a> served as the guide for this setup.
 <p><img src="http://evernote.s1810456025.student.kwmhgb.at/assets/evernote-files.png" width="300"></p>
 
 ## Database Design
-I never created a full ERD with all attributes listed, because I didn't deem it necessary (The individual table columns stick very close to the minimum requirements listed in the assignment). The ERD below was used to model the database relationships.
+I didn't create a full ERD with all attributes listed, because I didn't deem it necessary (The individual table columns stick very close to the minimum requirements listed in the assignment). The ERD below was used to model the database relationships.
 <p><img src="http://evernote.s1810456025.student.kwmhgb.at/assets/evernote-erd.png" width="524"></p>
 A User has multiple Items they can create; Lists, Notes, Tags and Todos, all of which have a foreign key to Users indicating the owner. Tags can be used for both Notes and Todos represented by n:m relationships. Lists and Users share an additional n:m relationship, represented by Shares. A User can either be connected to a given List via Share or by being its owner. Shares can also be referenced by a foreign-key in Todos, representing a Todo within a shared list that is assigned to a User.
 <br><br>
